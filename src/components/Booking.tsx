@@ -28,51 +28,37 @@ interface Booking {
   time: string; // HH:MM
 }
 
+const COMMON_SCHEDULE: BarberSchedule = {
+  1: { start: "09:00", end: "20:00", breakStart: "13:00", breakEnd: "14:00" }, // Mon
+  2: { start: "09:00", end: "20:00", breakStart: "13:00", breakEnd: "14:00" }, // Tue
+  3: { start: "09:00", end: "20:00", breakStart: "13:00", breakEnd: "14:00" }, // Wed
+  4: { start: "09:00", end: "20:00", breakStart: "13:00", breakEnd: "14:00" }, // Thu
+  5: { start: "09:00", end: "20:00", breakStart: "13:00", breakEnd: "14:00" }, // Fri
+  6: { start: "09:00", end: "20:00", breakStart: "13:00", breakEnd: "14:00" }, // Sat
+  0: null // Sun (Off)
+};
+
 const BARBERS: Barber[] = [
   {
     id: "stefan",
     name: "Stefan",
     role: "Inhaber & Master Barber",
     avatar: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&q=80&w=150&h=150",
-    schedule: {
-      1: { start: "09:00", end: "15:00", breakStart: "12:00", breakEnd: "12:40" }, // Mon
-      2: { start: "09:00", end: "15:00", breakStart: "12:00", breakEnd: "12:40" }, // Tue
-      3: { start: "09:00", end: "15:00", breakStart: "12:00", breakEnd: "12:40" }, // Wed
-      4: { start: "09:00", end: "15:00", breakStart: "12:00", breakEnd: "12:40" }, // Thu
-      5: { start: "09:00", end: "15:00", breakStart: "12:00", breakEnd: "12:40" }, // Fri
-      6: { start: "09:00", end: "15:00", breakStart: "12:00", breakEnd: "12:40" }, // Sat
-      0: null // Sun (Off)
-    }
+    schedule: COMMON_SCHEDULE
   },
   {
     id: "ahmed",
     name: "Ahmed",
     role: "Fade-Spezialist",
     avatar: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=150&h=150",
-    schedule: {
-      1: { start: "13:00", end: "20:00", breakStart: "16:00", breakEnd: "16:40" }, // Mon
-      2: { start: "13:00", end: "20:00", breakStart: "16:00", breakEnd: "16:40" }, // Tue
-      3: { start: "13:00", end: "20:00", breakStart: "16:00", breakEnd: "16:40" }, // Wed
-      4: { start: "13:00", end: "20:00", breakStart: "16:00", breakEnd: "16:40" }, // Thu
-      5: { start: "13:00", end: "20:00", breakStart: "16:00", breakEnd: "16:40" }, // Fri
-      6: { start: "09:00", end: "18:00", breakStart: "13:00", breakEnd: "13:40" }, // Sat
-      0: { start: "10:00", end: "16:00", breakStart: "13:00", breakEnd: "13:40" }  // Sun
-    }
+    schedule: COMMON_SCHEDULE
   },
   {
     id: "marco",
     name: "Marco",
     role: "Bart- & Rasurexperte",
     avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=150&h=150",
-    schedule: {
-      1: { start: "09:00", end: "18:00", breakStart: "13:00", breakEnd: "14:00" }, // Mon
-      2: { start: "09:00", end: "18:00", breakStart: "13:00", breakEnd: "14:00" }, // Tue
-      3: { start: "09:00", end: "18:00", breakStart: "13:00", breakEnd: "14:00" }, // Wed
-      4: { start: "09:00", end: "18:00", breakStart: "13:00", breakEnd: "14:00" }, // Thu
-      5: { start: "09:00", end: "18:00", breakStart: "13:00", breakEnd: "14:00" }, // Fri
-      6: null, // Sat (Off)
-      0: null  // Sun (Off)
-    }
+    schedule: COMMON_SCHEDULE
   }
 ];
 
@@ -332,6 +318,13 @@ export default function Booking() {
                   min={todayStr}
                   value={selectedDate}
                   onChange={(e) => setSelectedDate(e.target.value)}
+                  onClick={(e) => {
+                    try {
+                      e.currentTarget.showPicker();
+                    } catch (err) {
+                      // Fallback for older browsers
+                    }
+                  }}
                   className="w-full bg-[#121212] border border-gray-800 focus:border-brand focus:outline-none rounded px-4 py-3 text-white text-sm transition-colors cursor-pointer"
                   required
                 />
