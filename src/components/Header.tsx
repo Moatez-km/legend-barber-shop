@@ -44,9 +44,9 @@ export default function Header() {
         </nav>
 
         <div className="hidden lg:block">
-          <button className="bg-brand hover:bg-brand-hover text-black font-semibold text-sm px-6 py-3 transition-colors">
+          <a href="#booking-section" className="bg-brand hover:bg-brand-hover text-black font-semibold text-sm px-6 py-3 transition-colors inline-block uppercase text-center">
             TERMIN BUCHEN
-          </button>
+          </a>
         </div>
 
         <button className="lg:hidden text-white">

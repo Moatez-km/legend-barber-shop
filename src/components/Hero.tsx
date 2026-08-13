@@ -26,9 +26,9 @@ export default function Hero() {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 mb-12">
-            <button className="bg-brand hover:bg-brand-hover text-black font-semibold px-8 py-4 flex items-center justify-center gap-2 transition-colors uppercase text-sm">
+            <a href="#booking-section" className="bg-brand hover:bg-brand-hover text-black font-semibold px-8 py-4 flex items-center justify-center gap-2 transition-colors uppercase text-sm inline-flex">
               Termin Buchen <Calendar size={18} />
-            </button>
+            </a>
             <button className="border border-white hover:border-brand hover:text-brand text-white font-semibold px-8 py-4 transition-colors uppercase text-sm">
               Leistungen ansehen
             </button>
