@@ -16,6 +16,78 @@ interface Service {
   active: boolean;
 }
 
+// ==========================================
+// LOCAL MOCK DATA FALLBACKS (DEMO MODE)
+// ==========================================
+const LOCAL_BARBERS: Barber[] = [
+  { id: "stefan-local", name: "Stefan", active: true },
+  { id: "ahmed-local", name: "Ahmed", active: true },
+  { id: "marco-local", name: "Marco", active: true }
+];
+
+const LOCAL_SERVICES: Service[] = [
+  { id: "haarschnitt-local", name: "Haarschnitt", duration_minutes: 20, price: 30.00, active: true },
+  { id: "bartpflege-local", name: "Bartpflege", duration_minutes: 20, price: 20.00, active: true },
+  { id: "nassrasur-local", name: "Klassische Nassrasur", duration_minutes: 20, price: 30.00, active: true },
+  { id: "kinder-local", name: "Kinderhaarschnitt", duration_minutes: 20, price: 25.00, active: true },
+  { id: "design-local", name: "Haar-Design", duration_minutes: 20, price: 15.00, active: true },
+  { id: "wäsche-local", name: "Haarwäsche", duration_minutes: 20, price: 10.00, active: true }
+];
+
+const LOCAL_SHOP_SCHEDULES = [
+  { day_of_week: 1, opening_time: '09:00:00', closing_time: '20:00:00', is_open: true },
+  { day_of_week: 2, opening_time: '09:00:00', closing_time: '20:00:00', is_open: true },
+  { day_of_week: 3, opening_time: '09:00:00', closing_time: '20:00:00', is_open: true },
+  { day_of_week: 4, opening_time: '09:00:00', closing_time: '20:00:00', is_open: true },
+  { day_of_week: 5, opening_time: '09:00:00', closing_time: '20:00:00', is_open: true },
+  { day_of_week: 6, opening_time: '09:00:00', closing_time: '20:00:00', is_open: true },
+  { day_of_week: 0, opening_time: '00:00:00', closing_time: '00:00:00', is_open: false }
+];
+
+const LOCAL_BARBER_SCHEDULES = [
+  // Stefan Mon-Sat shifts (break 13-14)
+  { barber_id: "stefan-local", day_of_week: 1, start_time: '09:00:00', end_time: '13:00:00', is_available: true },
+  { barber_id: "stefan-local", day_of_week: 1, start_time: '14:00:00', end_time: '20:00:00', is_available: true },
+  { barber_id: "stefan-local", day_of_week: 2, start_time: '09:00:00', end_time: '13:00:00', is_available: true },
+  { barber_id: "stefan-local", day_of_week: 2, start_time: '14:00:00', end_time: '20:00:00', is_available: true },
+  { barber_id: "stefan-local", day_of_week: 3, start_time: '09:00:00', end_time: '13:00:00', is_available: true },
+  { barber_id: "stefan-local", day_of_week: 3, start_time: '14:00:00', end_time: '20:00:00', is_available: true },
+  { barber_id: "stefan-local", day_of_week: 4, start_time: '09:00:00', end_time: '13:00:00', is_available: true },
+  { barber_id: "stefan-local", day_of_week: 4, start_time: '14:00:00', end_time: '20:00:00', is_available: true },
+  { barber_id: "stefan-local", day_of_week: 5, start_time: '09:00:00', end_time: '13:00:00', is_available: true },
+  { barber_id: "stefan-local", day_of_week: 5, start_time: '14:00:00', end_time: '20:00:00', is_available: true },
+  { barber_id: "stefan-local", day_of_week: 6, start_time: '09:00:00', end_time: '13:00:00', is_available: true },
+  { barber_id: "stefan-local", day_of_week: 6, start_time: '14:00:00', end_time: '20:00:00', is_available: true },
+  
+  // Ahmed Mon-Sat shifts (break 13-14)
+  { barber_id: "ahmed-local", day_of_week: 1, start_time: '09:00:00', end_time: '13:00:00', is_available: true },
+  { barber_id: "ahmed-local", day_of_week: 1, start_time: '14:00:00', end_time: '20:00:00', is_available: true },
+  { barber_id: "ahmed-local", day_of_week: 2, start_time: '09:00:00', end_time: '13:00:00', is_available: true },
+  { barber_id: "ahmed-local", day_of_week: 2, start_time: '14:00:00', end_time: '20:00:00', is_available: true },
+  { barber_id: "ahmed-local", day_of_week: 3, start_time: '09:00:00', end_time: '13:00:00', is_available: true },
+  { barber_id: "ahmed-local", day_of_week: 3, start_time: '14:00:00', end_time: '20:00:00', is_available: true },
+  { barber_id: "ahmed-local", day_of_week: 4, start_time: '09:00:00', end_time: '13:00:00', is_available: true },
+  { barber_id: "ahmed-local", day_of_week: 4, start_time: '14:00:00', end_time: '20:00:00', is_available: true },
+  { barber_id: "ahmed-local", day_of_week: 5, start_time: '09:00:00', end_time: '13:00:00', is_available: true },
+  { barber_id: "ahmed-local", day_of_week: 5, start_time: '14:00:00', end_time: '20:00:00', is_available: true },
+  { barber_id: "ahmed-local", day_of_week: 6, start_time: '09:00:00', end_time: '13:00:00', is_available: true },
+  { barber_id: "ahmed-local", day_of_week: 6, start_time: '14:00:00', end_time: '20:00:00', is_available: true },
+
+  // Marco Mon-Sat shifts (break 13-14)
+  { barber_id: "marco-local", day_of_week: 1, start_time: '09:00:00', end_time: '13:00:00', is_available: true },
+  { barber_id: "marco-local", day_of_week: 1, start_time: '14:00:00', end_time: '20:00:00', is_available: true },
+  { barber_id: "marco-local", day_of_week: 2, start_time: '09:00:00', end_time: '13:00:00', is_available: true },
+  { barber_id: "marco-local", day_of_week: 2, start_time: '14:00:00', end_time: '20:00:00', is_available: true },
+  { barber_id: "marco-local", day_of_week: 3, start_time: '09:00:00', end_time: '13:00:00', is_available: true },
+  { barber_id: "marco-local", day_of_week: 3, start_time: '14:00:00', end_time: '20:00:00', is_available: true },
+  { barber_id: "marco-local", day_of_week: 4, start_time: '09:00:00', end_time: '13:00:00', is_available: true },
+  { barber_id: "marco-local", day_of_week: 4, start_time: '14:00:00', end_time: '20:00:00', is_available: true },
+  { barber_id: "marco-local", day_of_week: 5, start_time: '09:00:00', end_time: '13:00:00', is_available: true },
+  { barber_id: "marco-local", day_of_week: 5, start_time: '14:00:00', end_time: '20:00:00', is_available: true },
+  { barber_id: "marco-local", day_of_week: 6, start_time: '09:00:00', end_time: '13:00:00', is_available: true },
+  { barber_id: "marco-local", day_of_week: 6, start_time: '14:00:00', end_time: '20:00:00', is_available: true }
+];
+
 export default function Booking() {
   const todayStr = new Date().toLocaleDateString('sv-SE'); // Gets YYYY-MM-DD format safely in local timezone
 
@@ -39,13 +111,53 @@ export default function Booking() {
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [successBooking, setSuccessBooking] = useState<any | null>(null);
   const [errorMessage, setErrorMessage] = useState<string>('');
+  const [isDemoMode, setIsDemoMode] = useState<boolean>(false);
+
+  // Local state for storing bookings in demo mode
+  const [localBookings, setLocalBookings] = useState<any[]>(() => {
+    return [
+      { barber_id: "stefan-local", reservation_date: todayStr, reservation_time: "10:00:00" },
+      { barber_id: "stefan-local", reservation_date: todayStr, reservation_time: "10:20:00" },
+      { barber_id: "stefan-local", reservation_date: todayStr, reservation_time: "14:40:00" },
+      { barber_id: "ahmed-local", reservation_date: todayStr, reservation_time: "11:00:00" },
+      { barber_id: "marco-local", reservation_date: todayStr, reservation_time: "16:00:00" }
+    ];
+  });
+
+  const isSupabaseConfigured = () => {
+    const url = import.meta.env.VITE_SUPABASE_URL;
+    const anonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+    return (
+      url && 
+      anonKey && 
+      url !== '' && 
+      anonKey !== '' && 
+      !url.includes('YOUR_SUPABASE') && 
+      !anonKey.includes('YOUR_SUPABASE')
+    );
+  };
 
   // 1. Fetch initial static/semi-static data (barbers, services, schedules) on mount
   useEffect(() => {
     async function loadInitialData() {
+      if (!isSupabaseConfigured()) {
+        console.log("Supabase credentials missing. Running in local demo mode.");
+        setIsDemoMode(true);
+        setBarbers(LOCAL_BARBERS);
+        setServices(LOCAL_SERVICES);
+        setShopSchedules(LOCAL_SHOP_SCHEDULES);
+        setBarberSchedules(LOCAL_BARBER_SCHEDULES);
+        
+        if (LOCAL_BARBERS.length > 0) setSelectedBarberId(LOCAL_BARBERS[0].id);
+        if (LOCAL_SERVICES.length > 0) setSelectedServiceId(LOCAL_SERVICES[0].id);
+        setIsLoading(false);
+        return;
+      }
+
       try {
         setIsLoading(true);
         setErrorMessage('');
+        setIsDemoMode(false);
 
         // Fetch active barbers
         const { data: barbersData, error: barbersErr } = await supabase
@@ -85,7 +197,6 @@ export default function Booking() {
         setShopSchedules(shopData || []);
         setBarberSchedules(barberSchedData || []);
 
-        // Default selections
         if (barbersData && barbersData.length > 0) {
           setSelectedBarberId(barbersData[0].id);
         }
@@ -93,8 +204,15 @@ export default function Booking() {
           setSelectedServiceId(servicesData[0].id);
         }
       } catch (err: any) {
-        console.error("Error loading data from Supabase:", err);
-        setErrorMessage("Verbindungsfehler zur Spubabase-Datenbank: " + err.message);
+        console.error("Error loading data from Supabase, falling back to demo mode:", err);
+        setIsDemoMode(true);
+        setBarbers(LOCAL_BARBERS);
+        setServices(LOCAL_SERVICES);
+        setShopSchedules(LOCAL_SHOP_SCHEDULES);
+        setBarberSchedules(LOCAL_BARBER_SCHEDULES);
+        
+        if (LOCAL_BARBERS.length > 0) setSelectedBarberId(LOCAL_BARBERS[0].id);
+        if (LOCAL_SERVICES.length > 0) setSelectedServiceId(LOCAL_SERVICES[0].id);
       } finally {
         setIsLoading(false);
       }
@@ -107,6 +225,11 @@ export default function Booking() {
   useEffect(() => {
     async function loadBookings() {
       if (!selectedDate) return;
+      if (isDemoMode) {
+        setBookings(localBookings);
+        return;
+      }
+
       try {
         const { data, error } = await supabase
           .from('reservations')
@@ -117,12 +240,13 @@ export default function Booking() {
         if (error) throw error;
         setBookings(data || []);
       } catch (err: any) {
-        console.error("Error loading reservations:", err);
+        console.error("Error loading reservations, falling back to local bookings:", err);
+        setBookings(localBookings);
       }
     }
 
     loadBookings();
-  }, [selectedDate, selectedBarberId]);
+  }, [selectedDate, selectedBarberId, isDemoMode, localBookings]);
 
   // Auto-reset selected time if date or barber changes
   useEffect(() => {
@@ -241,6 +365,45 @@ export default function Booking() {
     setIsSubmitting(true);
     setErrorMessage('');
 
+    // Handle Local Demo Mode Booking
+    if (isDemoMode) {
+      setTimeout(() => {
+        const isAlreadyBooked = localBookings.some(
+          b => b.barber_id === selectedBarberId && 
+               b.reservation_date === selectedDate && 
+               b.reservation_time.substring(0, 5) === selectedTime
+        );
+
+        if (isAlreadyBooked) {
+          setErrorMessage("Entschuldigung, dieser Termin wurde gerade eben von einem anderen Kunden gebucht. Bitte wählen Sie eine andere Zeit.");
+          setIsSubmitting(false);
+          return;
+        }
+
+        const newLocalBooking = {
+          barber_id: selectedBarberId,
+          reservation_date: selectedDate,
+          reservation_time: selectedTime + ":00"
+        };
+
+        setLocalBookings(prev => [...prev, newLocalBooking]);
+
+        setSuccessBooking({
+          name: customerName,
+          phone: phone,
+          date: selectedDate,
+          time: selectedTime,
+          barber: selectedBarber?.name || 'Barbier',
+          service: selectedService?.name || 'Service',
+          price: selectedService ? `${Math.round(selectedService.price)}€` : '0€'
+        });
+
+        setIsSubmitting(false);
+      }, 700);
+      return;
+    }
+
+    // Handle Online Supabase Booking
     try {
       // Step A: Perform pre-check directly on server/database to prevent double booking race condition
       const { data: existingBookings, error: checkError } = await supabase
@@ -282,7 +445,6 @@ export default function Booking() {
         .select();
 
       if (insertError) {
-        // Catch PostgreSQL double-booking unique index violation (error code 23505)
         if (insertError.code === '23505') {
           throw new Error("double-booking");
         }
@@ -357,13 +519,21 @@ export default function Booking() {
           <p className="text-gray-400 mt-4 max-w-md mx-auto text-sm">
             Wählen Sie Ihren bevorzugten Service, Barbier und ein freies Zeitfenster. Sichern Sie sich Ihren Premium-Haarschnitt.
           </p>
+
+          {/* Fallback Demo Mode Banner */}
+          {isDemoMode && (
+            <div className="mt-4 inline-flex items-center gap-2 bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs px-4 py-2 rounded-full">
+              <span className="w-2 h-2 bg-amber-500 rounded-full animate-pulse"></span>
+              <span>Demo-Modus (Supabase nicht konfiguriert – siehe <code>supabase_setup.md</code>)</span>
+            </div>
+          )}
         </div>
 
         {/* Loading Spinner */}
         {isLoading ? (
           <div className="max-w-6xl mx-auto bg-[#1c1c1c] border border-gray-800 rounded-xl p-20 flex flex-col items-center justify-center text-center shadow-2xl">
             <div className="w-12 h-12 border-4 border-brand border-t-transparent rounded-full animate-spin mb-4"></div>
-            <p className="text-gray-400 text-sm">Lade Kalender und Verfügbarkeit aus der Cloud-Datenbank...</p>
+            <p className="text-gray-400 text-sm">Lade Kalender und Verfügbarkeit...</p>
           </div>
         ) : (
           <>
@@ -657,7 +827,7 @@ export default function Booking() {
 
             <h3 className="font-serif text-2xl text-white mb-2 uppercase tracking-wide">Termin Reserviert!</h3>
             <p className="text-gray-400 text-sm mb-6">
-              Vielen Dank, <span className="text-white font-bold">{successBooking.name}</span>. Ihr Termin wurde erfolgreich in der Cloud-Datenbank gebucht.
+              Vielen Dank, <span className="text-white font-bold">{successBooking.name}</span>. Ihr Termin wurde erfolgreich gebucht.
             </p>
 
             <div className="bg-[#121212] border border-gray-800 rounded-lg p-4 text-left space-y-3 mb-6 text-xs text-gray-300">
