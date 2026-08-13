@@ -1,0 +1,6 @@
+{
+  "name": "Legend Barber Shop",
+  "description": "Premium barber shop offering precision cuts, clean fades, and timeless style.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
