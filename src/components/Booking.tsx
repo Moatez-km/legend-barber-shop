@@ -311,7 +311,7 @@ export default function Booking() {
         const isBooked = bookings.some(
           b => b.barber_id === selectedBarberId && 
                b.reservation_date === selectedDate && 
-               b.reservation_time.substring(0, 5) === timeStr
+               b.reservation_time?.substring(0, 5) === timeStr
         );
 
         if (slots.some(s => s.time === timeStr)) continue;
@@ -411,7 +411,7 @@ export default function Booking() {
         .select('id')
         .eq('barber_id', selectedBarberId)
         .eq('reservation_date', selectedDate)
-        .eq('reservation_time', selectedTime)
+        .eq('reservation_time', selectedTime + ":00")
         .eq('status', 'active');
 
       if (checkError) throw checkError;
@@ -439,7 +439,7 @@ export default function Booking() {
           barber_id: selectedBarberId,
           service_id: selectedServiceId,
           reservation_date: selectedDate,
-          reservation_time: selectedTime,
+          reservation_time: selectedTime + ":00",
           status: 'active'
         })
         .select();
